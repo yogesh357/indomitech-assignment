@@ -13,12 +13,14 @@ import {
 } from "./ui/form"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
+import { useNavigate } from "react-router-dom"
 
 const loginSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
 })
 
+const navigator = useNavigate()
 type LoginForm = z.infer<typeof loginSchema>
 
 export default function Login() {
@@ -31,8 +33,7 @@ export default function Login() {
     })
 
     const onSubmit = (data: LoginForm) => {
-        console.log(data)
-        // call login API here
+        console.log("userdata :: ", data)
     }
 
     return (
@@ -88,7 +89,6 @@ export default function Login() {
                             )}
                         />
 
-                        {/* Submit */}
                         <Button
                             type="submit"
                             className="w-full h-11 rounded-lg text-base font-medium"
@@ -97,7 +97,11 @@ export default function Login() {
                         </Button>
                     </form>
                 </Form>
-
+                <div
+                    onClick={() => navigator('/admin/signup')}
+                >
+                    Don't have account?  Signup
+                </div>
             </div>
         </div>
 

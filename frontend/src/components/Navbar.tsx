@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import {
     Home, File, IndianRupee, Contact, Users,
@@ -123,7 +123,6 @@ const Navbar = () => {
                             </span>
                         </Button>
 
-                        {/* Quick Stats - Visible on desktop */}
                         <div className="hidden lg:flex items-center space-x-4 border-l pl-4">
                             <div className="text-right">
                                 <p className="text-sm font-medium text-gray-900">Active Projects</p>
@@ -131,11 +130,10 @@ const Navbar = () => {
                             </div>
                             <div className="text-right">
                                 <p className="text-sm font-medium text-gray-900">Team Members</p>
-                                <p className="text-xs text-gray-500">48 online</p>
+                                <p className="text-xs text-gray-500">45 online</p>
                             </div>
                         </div>
 
-                        {/* User Profile Dropdown */}
                         {user ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -253,7 +251,7 @@ const Navbar = () => {
                                 <>
                                     <div className="pt-4 border-t">
                                         <div className="flex items-center space-x-3 px-4 py-3">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/10">
+                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-primary/20 to-primary/10">
                                                 <span className="font-semibold text-primary text-lg">
                                                     {user.name?.charAt(0).toUpperCase() || 'U'}
                                                 </span>
