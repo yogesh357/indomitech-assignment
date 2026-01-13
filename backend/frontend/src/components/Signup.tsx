@@ -1,44 +1,34 @@
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
+import { zodResolver } from '@hookform/resolvers/zod'
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import z from 'zod'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form'
+import { Label } from './ui/label'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
+import { useAuth } from '@/contexts/AuthContext'
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "./ui/form"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { useNavigate } from "react-router-dom"
-import { useContext, useEffect } from "react"
-import { useAuth } from "@/contexts/AuthContext"
-import api from "@/lib/axios"
 
-const loginSchema = z.object({
+const signupSchema = z.object({
+    name: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
 })
 
-type LoginForm = z.infer<typeof loginSchema>
+type SignupForm = z.infer<typeof signupSchema>
 
-export default function Login() {
-
-    const form = useForm<LoginForm>({
-        resolver: zodResolver(loginSchema),
+function Signup() {
+    const form = useForm<SignupForm>({
+        resolver: zodResolver(signupSchema),
         defaultValues: {
+            name: "",
             email: "",
             password: "",
         },
     })
-    const { login, user } = useAuth()
-    const onSubmit = async (data: LoginForm) => {
-        console.log("userdata :: ", data)
-        await login(data.email, data.password)
-
-    }
+    const onSubmit = () => { }
+    const { user } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -49,30 +39,28 @@ export default function Login() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-            <div className="w-full max-w-md  h-[60vh]  rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
+        <div className="max-h-screen h-[90vh] flex items-center justify-center bg-slate-50  overflow-y-hidden">
+            <div className="w-full max-w-md  h-[75vh]  rounded-2xl border border-slate-200 bg-white px-8 py-3 shadow-xl">
 
                 <div className="mb-8 text-center">
                     <h1 className="text-2xl font-bold tracking-tight text-slate-900 font-serif">
-                        Admin Login
+                        Admin Signup
                     </h1>
                     <p className="mt-2 text-sm text-slate-500">
-                        Sign in to manage employees and tasks
+                        Register to manage employees and tasks
                     </p>
                 </div>
-
-                <Form {...form}>
+                <Form {...form} >
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-
                         <FormField
                             control={form.control}
-                            name="email"
+                            name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700">Email</FormLabel>
+                                    <FormLabel className="text-slate-700">Name</FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder="admin@company.com"
+                                            placeholder="jonny deep"
                                             className="h-11"
                                             {...field}
                                         />
@@ -81,7 +69,23 @@ export default function Login() {
                                 </FormItem>
                             )}
                         />
-
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-slate-700">Email</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="jonnydeep@gmail.com"
+                                            className="h-11"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                         <FormField
                             control={form.control}
                             name="password"
@@ -90,7 +94,6 @@ export default function Login() {
                                     <FormLabel className="text-slate-700">Password</FormLabel>
                                     <FormControl>
                                         <Input
-                                            type="password"
                                             placeholder="******"
                                             className="h-11"
                                             {...field}
@@ -100,7 +103,6 @@ export default function Login() {
                                 </FormItem>
                             )}
                         />
-
                         <Button
                             type="submit"
                             className="w-full h-11 rounded-lg text-base font-medium bg-linear-to-bl from-black/90 to-gray-500"
@@ -110,12 +112,13 @@ export default function Login() {
                     </form>
                 </Form>
                 <div className="text-center mt-6 cursor-pointer"
-                    onClick={() => navigate('/admin/signup')}
+                    onClick={() => navigate('/admin/login')}
                 >
-                    Don't have account? <span className="text-blue-500">  Signup</span>
+                    Already have account? <span className="text-blue-500">  Login</span>
                 </div>
             </div>
         </div>
-
     )
 }
+
+export default Signup
