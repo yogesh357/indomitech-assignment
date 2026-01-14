@@ -13,9 +13,9 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
-
+const origin = ['http://localhost:5173', 'https://indomitech-assignment.vercel.app']
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: origin,
     credentials: true,
 }));
 
