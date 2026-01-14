@@ -1,5 +1,5 @@
 
-function TasAnalysis() {
+function TaskAnalysis() {
     return (
         <div className='flex flex-col  justify-center items-center'>
             <h1 className='text-xl font-bold font-serif mt-10'> Analyse progess of each task</h1>
@@ -8,4 +8,4 @@ function TasAnalysis() {
     )
 }
 
-export default TasAnalysis
+export default TaskAnalysis

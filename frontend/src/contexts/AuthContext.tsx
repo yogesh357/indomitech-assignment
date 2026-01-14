@@ -65,7 +65,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const response = await api.post('/auth/login', { email, password })
             const { user: userData } = response.data
-            console.log(response, "-----------------")
             setUser(userData)
             navigate('/admin')
             toast.success(response?.data?.message || "Admin Logged in succesfully")
@@ -79,7 +78,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const response = await api.post('/auth/register', { name, email, password })
             const { user: userData } = response.data
-
             setUser(userData)
             navigate('/admin')
             toast.success(response?.data?.message || "Admin signup succesfully")

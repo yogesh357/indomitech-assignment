@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import {
-    Home, File, IndianRupee, Contact, Users,
-    UserPlus, ClipboardList, Menu, X, LogOut,
-    Settings, Bell, Search, ChevronDown,
+    Home, Contact,
+    ClipboardList, Menu, X, LogOut,
+    Settings, Bell, ChevronDown,
     Building, BarChart,
-    ClipboardEdit
+    ClipboardEdit,
+    Users
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import {
@@ -25,9 +26,9 @@ const navItems = [
         image: Home
     },
     {
-        name: "Pricing",
-        link: "/pricing",
-        image: IndianRupee
+        name: "Employees",
+        link: "/employees",
+        image: Users
     },
     {
         name: "Contact",
@@ -37,7 +38,6 @@ const navItems = [
     {
         name: "Add Task",
         link: "/admin/task/assign",
-        // image: UserPlus
         image: ClipboardEdit
 
     },
@@ -55,7 +55,9 @@ const Navbar = () => {
     const { user, logout } = useAuth()
 
     const isActiveLink = (link: string) => {
+        console.log("link :", link, "pathname : ", location.pathname)
         return location.pathname === link
+
     }
 
     const handleNavClick = (link: string) => {
@@ -105,7 +107,7 @@ const Navbar = () => {
                             })}
                         </div>
                     </div>
-                    <div className="flex items-center space-x-4"> 
+                    <div className="flex items-center space-x-4">
                         {user &&
                             <>
                                 <Button variant="ghost" size="icon" className="relative">
@@ -152,13 +154,13 @@ const Navbar = () => {
                                         <BarChart className="mr-2 h-4 w-4" />
                                         Dashboard
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => navigate('/admin/employees')}>
-                                        <Users className="mr-2 h-4 w-4" />
-                                        Manage Employees
+                                    <DropdownMenuItem onClick={() => navigate('/admin/employees/tasks')}>
+                                        <ClipboardList className="mr-2 h-4 w-4" />
+                                        Manage Task
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => navigate('/admin/employees/create')}>
-                                        <UserPlus className="mr-2 h-4 w-4" />
-                                        Add New Employee
+                                    <DropdownMenuItem onClick={() => navigate('/admin/task/assign')}>
+                                        <ClipboardEdit className="mr-2 h-4 w-4" />
+                                        Add New Task
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
@@ -264,7 +266,6 @@ const Navbar = () => {
                             )}
                         </div>
 
-                        {/* Mobile Quick Stats */}
                         {user &&
                             <div className="mt-6 grid grid-cols-2 gap-4 border-t pt-4">
                                 <div className="text-center">

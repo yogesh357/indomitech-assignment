@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/AuthContext'
 import LandingPage from '@/pages/LandingPage'
-import EmployeeList from '@/pages/admin/task/TaskList'
-import EmployeeCreate from '@/pages/admin/task/TaskCreate'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import { Toaster } from 'sonner'
 import Login from './components/Login'
@@ -10,9 +8,11 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/admin/Dashboard'
 import UnderDevelopment from './components/UnderDevelopment'
 import Signup from './components/Signup'
-import TasAnalysis from './components/TasAnalysis'
 import { Button } from './components/ui/button'
 import { ArrowLeft } from 'lucide-react'
+import TaskList from '@/pages/admin/task/TaskList'
+import TaskCreate from '@/pages/admin/task/TaskCreate'
+import Contact from './components/Contact'
 
 function App() {
   return (
@@ -30,14 +30,14 @@ function App() {
               <ProtectedRoute />
             }>
               <Route index element={<Dashboard />} />
-              <Route path="/admin/employees/tasks" element={<EmployeeList />} />
-              <Route path="/admin/task/assign" element={<EmployeeCreate />} />
+              <Route path="/admin/employees/tasks" element={<TaskList />} />
+              <Route path="/admin/task/assign" element={<TaskCreate />} />
             </Route>
 
 
-            <Route path='/pricing' element={<UnderDevelopment />} />
+            <Route path='/employees' element={<UnderDevelopment />} />
             <Route path='/tasks' element={<UnderDevelopment />} />
-            <Route path='/contact' element={<TasAnalysis />}></Route>
+            <Route path='/contact' element={<Contact />}></Route>
             <Route path='/features' element={<UnderDevelopment />} />3
             <Route path='/*' element={<div className='h-[90vh] flex flex-col gap-5 justify-center items-center text-2xl font-semibold'>
 

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Rocket, Users, ClipboardList, Server, UserCog, Layers, ShieldCheck } from 'lucide-react'
 import Footer from '@/components/Footer'
 import { Link } from 'react-router-dom'
+import { useAuth } from '@/contexts/AuthContext'
 
 const LandingPage = () => {
   const features = [
@@ -44,11 +45,11 @@ const LandingPage = () => {
     },
   ]
 
-
+  const { user } = useAuth()
 
   return (
     <div className="min-h-screen bg-linear-to-b from-background to-muted/30 ">
-      {/* <Navbar /> */}
+
       <div className=''>
 
         <section className="container mx-auto px-4 py-20 text-center">
@@ -64,15 +65,28 @@ const LandingPage = () => {
             admin dashboard.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8">
-              <Link to="/admin/login">Admin Login</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 " asChild>
-              <Link to="/admin/employees">
-                <Rocket className="mr-2 h-5 w-5" />
-                View Employee Module
-              </Link>
-            </Button>
+            {user ?
+              (
+                <Button size="lg" className="text-lg px-8" asChild>
+                  <Link to={'/admin'}>
+                    Go to Dashboard
+                    <Rocket className="mr-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              ) : (
+                <>
+                  <Button size="lg" className="text-lg px-8">
+                    <Link to="/admin/login">Admin Login</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-lg px-8 " asChild>
+                    <Link to="/employe/task">
+                      <Rocket className="mr-2 h-5 w-5" />
+                      View Task Module
+                    </Link>
+                  </Button>
+                </>
+              )
+            }
           </div>
         </section>
 
@@ -104,7 +118,7 @@ const LandingPage = () => {
                 Try the Admin Dashboard Live
               </h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Log in as an admin and explore the employee management system with
+                Log in as an admin and explore the task management system with
                 real Backend Integration.
               </p>
 
@@ -114,7 +128,7 @@ const LandingPage = () => {
                 </Button>
 
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/admin/employees">Open Employee Module</Link>
+                  <Link to="/employe/task">Open Task Module</Link>
                 </Button>
               </div>
             </CardContent>
@@ -122,8 +136,8 @@ const LandingPage = () => {
         </section>
 
         <Footer />
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 
