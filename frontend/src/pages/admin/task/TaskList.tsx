@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react" 
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -31,7 +31,7 @@ export default function TaskList() {
 
     const fetchTasks = async () => {
         try { 
-            const res = await api.get(`/tasks`)
+            const res = await api.get('/tasks')
             setTasks(res.data)
         } catch (err: any) {
             console.log("error while fetching task ", err)
@@ -60,7 +60,7 @@ export default function TaskList() {
                     <h2 className="text-3xl font-bold ">Assigned Tasks</h2>
                     <p className="text-muted-foreground">Track and manage all assigned  tasks</p>
                 </div>
-              
+
             </div>
 
             <Card>

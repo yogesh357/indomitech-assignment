@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import {
     Card,
-    CardContent, 
+    CardContent,
 } from "@/components/ui/card"
 import {
     Form,
@@ -49,9 +49,9 @@ export default function TaskCreate() {
     const onSubmit = async (data: TaskFormData) => {
         setLoading(true)
         try {
-            await api.post("/tasks", data)
+            await api.post("/tasks/assign", data)
             toast.success("Task assigned successfully")
-            navigate("/admin/employee/tasks")
+            navigate("/admin/employees/tasks")
         } catch (err: any) {
             toast.error(err.response?.data?.message || "Failed to assign task")
         } finally {

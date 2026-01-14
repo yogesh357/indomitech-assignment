@@ -3,9 +3,8 @@ import EmployeeTask from "../models/EmployeeTask.js";
 
 export const createTask = async (req: Request, res: Response) => {
     try {
-        const userId = req.user!.id; 
-        const { employeeName, description, dueDate, priority, status } = req.body;
-
+        const userId = req.user!.id;
+        const { employeeName, description, dueDate, priority, status } = req.body; 
         if (!employeeName || !description || !dueDate) {
             return res.status(400).json({
                 message: "Employee name, description and due date are required",
