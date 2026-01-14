@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -33,10 +33,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
-app.get('/checkup', (req, res) => {
+app.get('/checkup', (req: Request, res: Response) => {
     res.status(200).json({ status: 'OK', message: "server is Workinggg" });
 });
-
 
 const PORT = process.env.PORT || 5000;
 
