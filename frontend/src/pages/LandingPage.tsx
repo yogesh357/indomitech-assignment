@@ -1,8 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle, Rocket, Shield, Users, BarChart, Zap, ClipboardList, Server, UserCog, Layers, ShieldCheck } from 'lucide-react'
+import { Rocket, Users, ClipboardList, Server, UserCog, Layers, ShieldCheck } from 'lucide-react'
 import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
 import { Link } from 'react-router-dom'
 
 const LandingPage = () => {

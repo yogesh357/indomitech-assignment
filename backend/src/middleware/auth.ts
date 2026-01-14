@@ -16,8 +16,7 @@ interface JwtPayload {
 
 export const protect = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies?.token;
-        console.log("token found ", token)
+        const token = req.cookies?.token; 
 
         if (!token) {
             return res.status(401).json({

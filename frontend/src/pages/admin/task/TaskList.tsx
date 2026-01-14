@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react" 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Search } from "lucide-react"
+import { Search } from "lucide-react"
 import api from "@/lib/axios"
 import { toast } from "sonner"
 
@@ -20,38 +18,8 @@ interface Task {
     createdBy: string
 }
 
-const demoTasks: Task[] = [
-    {
-        _id: "2222222222222",
-        employeeName: "Aarav Sharma",
-        description: "Fix login issue on alumni portal",
-        priority: "high",
-        createdBy: "6965f92c9c0439c3fa06fc37",
-        status: "in-progress",
-        dueDate: "2026-01-15",
 
-    },
-    {
-        _id: "22222222222dd22",
-        employeeName: "Neha Patel",
-        description: "Review alumni profile verification documents",
-        priority: "medium",
-        status: "pending",
-        createdBy: "6965f92c9c0439c3fa06fc37",
-        dueDate: "2026-01-18",
-    },
-    {
-        _id: "222222222223d22",
-        employeeName: "Rohit Verma",
-        description: "Deploy latest backend API to production",
-        priority: "high",
-        status: "pending", createdBy: "6965f92c9c0439c3fa06fc37",
-        dueDate: "2026-01-14",
-    },
-
-];
 export default function TaskList() {
-    const navigate = useNavigate()
     const [tasks, setTasks] = useState<Task[]>([])
     const [loading, setLoading] = useState(true)
     const [search, setSearch] = useState("")
@@ -62,10 +30,7 @@ export default function TaskList() {
     }, [])
 
     const fetchTasks = async () => {
-        try {
-            const params = new URLSearchParams()
-            if (search) params.append("search", search)
-            if (status) params.append("status", status)
+        try { 
             const res = await api.get(`/tasks`)
             setTasks(res.data)
         } catch (err: any) {
@@ -95,10 +60,7 @@ export default function TaskList() {
                     <h2 className="text-3xl font-bold ">Assigned Tasks</h2>
                     <p className="text-muted-foreground">Track and manage all assigned  tasks</p>
                 </div>
-                {/* <Button onClick={() => navigate("/admin/task/assign")}>
-                    <Plus className="mr-2 h-4 w-4" />
-                    Assign Task
-                </Button> */}
+              
             </div>
 
             <Card>

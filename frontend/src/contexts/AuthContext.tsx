@@ -45,7 +45,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const fetchUser = async () => {
         try {
-            const response = await api.get('/auth/me') //:
+            console.log("-----------------")
+            const response = await api.get('/auth/me')
+            console.log(response, "-----------------")
             setUser(response.data.user)
         } catch (error) {
             console.error('Failed to fetch user:', error)
@@ -63,12 +65,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const response = await api.post('/auth/login', { email, password })
             const { user: userData } = response.data
-
+            console.log(response, "-----------------")
             setUser(userData)
             navigate('/admin')
-            toast.success("Admin Logged in succesfully")
+            toast.success(response?.data?.message || "Admin Logged in succesfully")
         } catch (error: any) {
-            toast.error("Admin Logged in error")
+            toast.error(error.response?.data?.message || 'Login failed')
             throw new Error(error.response?.data?.message || 'Login failed')
         }
     }
@@ -80,10 +82,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
             setUser(userData)
             navigate('/admin')
-            toast.success("Admin signup succesfully")
+            toast.success(response?.data?.message || "Admin signup succesfully")
         } catch (error: any) {
-            toast.error("Admin signup error")
-            throw new Error(error.response?.data?.message || 'Registration failed')
+            const message =
+                error.response?.data?.message || "Registration failed"
+            toast.error(message)
+
+            throw new Error(message)
         }
     }
 
