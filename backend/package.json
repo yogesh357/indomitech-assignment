@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node dist/server.js",
-    "build": "tsc -b",
+    "build": "tsc",
     "test": "jest",
     "dev": "ts-node-dev src/server.ts"
   },
@@ -30,6 +30,6 @@
     "@types/node": "^20.19.29",
     "nodemon": "^3.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.9.3"
   }
 }
