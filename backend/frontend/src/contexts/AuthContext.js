@@ -1,0 +1,113 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthProvider = exports.useAuth = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = __importStar(require("react"));
+const react_router_dom_1 = require("react-router-dom");
+const axios_1 = __importDefault(require("@/lib/axios"));
+const AuthContext = (0, react_1.createContext)(undefined);
+const useAuth = () => {
+    const context = (0, react_1.useContext)(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
+};
+exports.useAuth = useAuth;
+const demoUser = {
+    id: '1',
+    name: 'Demo User',
+    email: ' yp@gmail.com',
+    role: "ADMIN"
+};
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = (0, react_1.useState)(null);
+    const [isLoading, setIsLoading] = (0, react_1.useState)(false);
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const fetchUser = async () => {
+        try {
+            const response = await axios_1.default.get('/auth/me'); //:
+            setUser(response.data.user);
+        }
+        catch (error) {
+            console.error('Failed to fetch user:', error);
+            setUser(null);
+        }
+        finally {
+            setIsLoading(false);
+        }
+    };
+    (0, react_1.useEffect)(() => {
+        fetchUser()
+            .finally(() => setIsLoading(false));
+    }, []);
+    const login = async (email, password) => {
+        try {
+            const response = await axios_1.default.post('/auth/login', { email, password });
+            const { user: userData } = response.data;
+            setUser(userData);
+            navigate('/admin');
+        }
+        catch (error) {
+            throw new Error(error.response?.data?.message || 'Login failed');
+        }
+    };
+    const register = async (name, email, password) => {
+        try {
+            const response = await axios_1.default.post('/auth/register', { name, email, password });
+            const { user: userData } = response.data;
+            setUser(userData);
+            navigate('/admin');
+        }
+        catch (error) {
+            throw new Error(error.response?.data?.message || 'Registration failed');
+        }
+    };
+    const logout = async () => {
+        setUser(null);
+        await axios_1.default.post('/auth/logout');
+        navigate('/admin/login');
+    };
+    const updateUser = (userData) => {
+        setUser(prev => prev ? { ...prev, ...userData } : null);
+    };
+    return ((0, jsx_runtime_1.jsx)(AuthContext.Provider, { value: { user, isLoading, login, register, logout, updateUser }, children: children }));
+};
+exports.AuthProvider = AuthProvider;
+//# sourceMappingURL=AuthContext.js.map

@@ -27,8 +27,13 @@ function Signup() {
             password: "",
         },
     })
-    const onSubmit = () => { }
-    const { user } = useAuth()
+    const { user, register } = useAuth()
+    const onSubmit = async (data: SignupForm) => {
+        console.log(data)
+        await register(data.name, data.email, data.password)
+        console.log("signup succesfully")
+
+    }
     const navigate = useNavigate()
 
     useEffect(() => {

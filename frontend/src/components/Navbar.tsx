@@ -5,7 +5,8 @@ import {
     Home, File, IndianRupee, Contact, Users,
     UserPlus, ClipboardList, Menu, X, LogOut,
     Settings, Bell, Search, ChevronDown,
-    Building, BarChart
+    Building, BarChart,
+    ClipboardEdit
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import {
@@ -24,11 +25,6 @@ const navItems = [
         image: Home
     },
     {
-        name: "Features",
-        link: "/features",
-        image: File
-    },
-    {
         name: "Pricing",
         link: "/pricing",
         image: IndianRupee
@@ -41,7 +37,9 @@ const navItems = [
     {
         name: "Add Task",
         link: "/admin/task/assign",
-        image: UserPlus
+        // image: UserPlus
+        image: ClipboardEdit
+
     },
     {
         name: "Tasks List",
@@ -73,7 +71,6 @@ const Navbar = () => {
                     <div className="flex items-center"
                     >
                         <div className="flex items-center space-x-2 cursor-pointer"
-
                             onClick={() => handleNavClick('/')}>
                             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-purple-600">
                                 <Building className="h-6 w-6 text-white" />
@@ -108,26 +105,29 @@ const Navbar = () => {
                             })}
                         </div>
                     </div>
+                    <div className="flex items-center space-x-4"> 
+                        {user &&
+                            <>
+                                <Button variant="ghost" size="icon" className="relative">
+                                    <Bell className="h-5 w-5" />
+                                    <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                                        3
+                                    </span>
+                                </Button>
 
-                    <div className="flex items-center space-x-4">
-                        {/* Notifications */}
-                        <Button variant="ghost" size="icon" className="relative">
-                            <Bell className="h-5 w-5" />
-                            <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                                3
-                            </span>
-                        </Button>
+                                <div className="hidden lg:flex items-center space-x-4 border-l pl-4">
+                                    <div className="text-right">
+                                        <p className="text-sm font-medium text-gray-900">Active Projects</p>
+                                        <p className="text-xs text-gray-500">12 running</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-sm font-medium text-gray-900">Team Members</p>
+                                        <p className="text-xs text-gray-500">45 online</p>
+                                    </div>
+                                </div>
+                            </>
 
-                        <div className="hidden lg:flex items-center space-x-4 border-l pl-4">
-                            <div className="text-right">
-                                <p className="text-sm font-medium text-gray-900">Active Projects</p>
-                                <p className="text-xs text-gray-500">12 running</p>
-                            </div>
-                            <div className="text-right">
-                                <p className="text-sm font-medium text-gray-900">Team Members</p>
-                                <p className="text-xs text-gray-500">45 online</p>
-                            </div>
-                        </div>
+                        }
 
                         {user ? (
                             <DropdownMenu>
@@ -212,15 +212,6 @@ const Navbar = () => {
                 {/*: for Mobile screen */}
                 {isMobileMenuOpen && (
                     <div className="lg:hidden border-t mt-2 py-4">
-                        {/* Mobile Search */}
-                        <div className="relative mb-4">
-                            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                            <input
-                                type="search"
-                                placeholder="Search..."
-                                className="pl-10 pr-4 py-2 w-full rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                            />
-                        </div>
 
                         {/* Mobile Navigation Items */}
                         <div className="space-y-1">
@@ -241,7 +232,6 @@ const Navbar = () => {
                                 )
                             })}
 
-                            {/* Mobile User Info */}
                             {user && (
                                 <>
                                     <div className="pt-4 border-t">
@@ -275,16 +265,18 @@ const Navbar = () => {
                         </div>
 
                         {/* Mobile Quick Stats */}
-                        <div className="mt-6 grid grid-cols-2 gap-4 border-t pt-4">
-                            <div className="text-center">
-                                <p className="text-2xl font-bold text-gray-900">12</p>
-                                <p className="text-xs text-gray-500">Active Projects</p>
+                        {user &&
+                            <div className="mt-6 grid grid-cols-2 gap-4 border-t pt-4">
+                                <div className="text-center">
+                                    <p className="text-2xl font-bold text-gray-900">12</p>
+                                    <p className="text-xs text-gray-500">Active Projects</p>
+                                </div>
+                                <div className="text-center">
+                                    <p className="text-2xl font-bold text-gray-900">48</p>
+                                    <p className="text-xs text-gray-500">Team Members</p>
+                                </div>
                             </div>
-                            <div className="text-center">
-                                <p className="text-2xl font-bold text-gray-900">48</p>
-                                <p className="text-xs text-gray-500">Team Members</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                 )}
             </div>

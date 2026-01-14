@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '@/lib/axios'
+import { toast } from 'sonner'
 
 interface User {
     id: string
@@ -65,7 +66,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
             setUser(userData)
             navigate('/admin')
+            toast.success("Admin Logged in succesfully")
         } catch (error: any) {
+            toast.error("Admin Logged in error")
             throw new Error(error.response?.data?.message || 'Login failed')
         }
     }
@@ -77,7 +80,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
             setUser(userData)
             navigate('/admin')
+            toast.success("Admin signup succesfully")
         } catch (error: any) {
+            toast.error("Admin signup error")
             throw new Error(error.response?.data?.message || 'Registration failed')
         }
     }
@@ -85,6 +90,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const logout = async () => {
         setUser(null)
         await api.post('/auth/logout')
+        toast.success("Logged out !!")
         navigate('/admin/login')
     }
 

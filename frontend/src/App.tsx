@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/AuthContext'
 import LandingPage from '@/pages/LandingPage'
-import EmployeeList from '@/pages/admin/employees/TaskList'
-import EmployeeCreate from '@/pages/admin/employees/TaskCreate'
+import EmployeeList from '@/pages/admin/task/TaskList'
+import EmployeeCreate from '@/pages/admin/task/TaskCreate'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import { Toaster } from 'sonner'
 import Login from './components/Login'
@@ -10,6 +10,9 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/admin/Dashboard'
 import UnderDevelopment from './components/UnderDevelopment'
 import Signup from './components/Signup'
+import TasAnalysis from './components/TasAnalysis'
+import { Button } from './components/ui/button'
+import { ArrowLeft } from 'lucide-react'
 
 function App() {
   return (
@@ -34,9 +37,16 @@ function App() {
 
             <Route path='/pricing' element={<UnderDevelopment />} />
             <Route path='/tasks' element={<UnderDevelopment />} />
-            <Route path='/contact' element={<UnderDevelopment />}></Route>
-            <Route path='/features' element={<UnderDevelopment />} />
-            <Route path='/*' element={<div>route not found</div>} />
+            <Route path='/contact' element={<TasAnalysis />}></Route>
+            <Route path='/features' element={<UnderDevelopment />} />3
+            <Route path='/*' element={<div className='h-[90vh] flex flex-col gap-5 justify-center items-center text-2xl font-semibold'>
+
+              route not found
+              <Button onClick={() => window.location.replace('/')}>
+                <ArrowLeft />
+                Go To Home Page
+              </Button>
+            </div>} />
 
           </Routes>
           <Toaster />
