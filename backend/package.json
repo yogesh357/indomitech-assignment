@@ -4,10 +4,10 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "tsc -b & nodemon dist/src/server.js",
+    "start": "node dist/server.js", 
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",  
+    "dev": "ts-node-dev src/server.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
