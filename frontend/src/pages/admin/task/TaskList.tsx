@@ -30,12 +30,12 @@ export default function TaskList() {
     }, [])
 
     const fetchTasks = async () => {
-        try { 
+        try {
             const res = await api.get('/tasks')
             setTasks(res.data)
         } catch (err: any) {
             console.log("error while fetching task ", err)
-            toast.error("Failed to load tasks")
+            toast.error(err.response?.data?.message || 'Failed to load tasks')
         } finally {
             setLoading(false)
         }

@@ -45,21 +45,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const fetchUser = async () => {
         try {
-            console.log("-----------------")
             const response = await api.get('/auth/me')
-            console.log(response, "-----------------")
             setUser(response.data.user)
         } catch (error) {
-            console.error('Failed to fetch user:', error)
+            console.error('[Failed to fetch user]', error)
             setUser(null)
         } finally {
             setIsLoading(false)
         }
     }
     useEffect(() => {
-        fetchUser()
-            .finally(() => setIsLoading(false))
-    }, [])
+        fetchUser();
+    }, []);
+
 
     const login = async (email: string, password: string) => {
         try {
@@ -82,6 +80,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             navigate('/admin')
             toast.success(response?.data?.message || "Admin signup succesfully")
         } catch (error: any) {
+            console.log(error, "3333333333333333");
+
             const message =
                 error.response?.data?.message || "Registration failed"
             toast.error(message)

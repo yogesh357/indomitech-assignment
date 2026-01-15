@@ -7,6 +7,7 @@ import taskRoutes from './routes/employeesTask.js'
 import authRoutes from './routes/auth.js';
 import { connectDB } from './config/connectDB.js';
 import cookieParser from "cookie-parser";
+import { errorHandler } from './middleware/errorHandler.js';
 dotenv.config();
 
 
@@ -23,9 +24,10 @@ app.use(cookieParser());
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 50,
+    max: 100,
 });
 app.use('/api', limiter);
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,6 +38,7 @@ app.use('/api/tasks', taskRoutes);
 app.get('/checkup', (req: Request, res: Response) => {
     res.status(200).json({ status: 'OK', message: "server is Workinggg" });
 });
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
