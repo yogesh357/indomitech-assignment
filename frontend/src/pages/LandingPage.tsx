@@ -59,7 +59,7 @@ const LandingPage = () => {
 
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
 
       {/* 1. HERO SECTION */}
       <section className="relative  w-full pt-24 pb-20 md:pt-32 md:pb-32 lg:pb-40 px-4">
@@ -69,7 +69,7 @@ const LandingPage = () => {
           {/* Heading */}
           <h1 className="mx-auto max-w-5xl text-5xl  font-extrabold tracking-normal text-slate-900 sm:text-6xl md:text-7xl mb-8 drop-shadow-sm">
             Streamline Your Workflow with{' '}
-            <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
               TaskManager
             </span>
           </h1>
@@ -91,10 +91,10 @@ const LandingPage = () => {
               </Button>
             ) : (
               <>
-                <Button size="lg" className="h-12 min-w-[160px] text-base font-semibold shadow-xl shadow-orange-500/10 bg-slate-900 hover:bg-slate-800 transition-all hover:-translate-y-1" asChild>
+                <Button size="lg" className="h-12 min-w-40 text-base font-semibold shadow-xl shadow-orange-500/10 bg-slate-900 hover:bg-slate-800 transition-all hover:-translate-y-1" asChild>
                   <Link to="/admin/login">Admin Login</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 min-w-[160px] border-slate-300 bg-white/50 backdrop-blur-sm text-base hover:bg-white hover:text-orange-600 transition-all" asChild>
+                <Button size="lg" variant="outline" className="h-12 min-w-40 border-slate-300 bg-white/50 backdrop-blur-sm text-base hover:bg-white hover:text-orange-600 transition-all" asChild>
                   <Link to="/employe/task">
                     <Rocket className="mr-2 h-5 w-5" />
                     Task Module
@@ -106,14 +106,13 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* features */}
-      {/* <section className="relative py-24 overflow-hidden bg-slate-50"> 
+      <section className="relative py-24 overflow-hidden bg-slate-50">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl z-0 pointer-events-none">
           <div className="absolute top-20 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
           <div className="absolute top-20 right-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4"> 
+        <div className="relative z-10 container mx-auto px-4">
           <div className="mb-20 text-center max-w-3xl mx-auto">
             <span className="text-orange-600 font-semibold tracking-wide uppercase text-sm bg-orange-50 px-3 py-1 rounded-full mb-4 inline-block">
               Features
@@ -125,27 +124,27 @@ const LandingPage = () => {
               Everything you need to manage your team — designed for clarity, security, and scale.
             </p>
           </div>
-  
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
                 className="group relative bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-              > 
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative z-10 flex flex-col h-full"> 
+                <div className="relative z-10 flex flex-col h-full">
                   <div className={`mb-6 inline-flex items-center justify-center h-14 w-14 rounded-2xl ${feature.bg} text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform duration-300`}>
                     {feature.icon}
                   </div>
- 
+
                   <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
                     {feature.description}
                   </p>
- 
+
                   <div className="flex items-center text-sm font-semibold text-slate-900 group/link cursor-pointer">
                     Learn more
                     <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform text-orange-600" />
@@ -155,49 +154,9 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-      </section> */}
-
-      {/* featurs section */}
-      <section className="bg-slate-950 py-24 text-slate-100">
-        <div className="container mx-auto px-4">
-          <div className="mb-20 text-center">
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
-              Engineered for <span className="text-indigo-400">Perfomance</span>
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Unleash the full potential of your workflow with tools built for the future.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-slate-700 to-slate-900 overflow-hidden"
-              >
-                {/* Glowing Border Animation */}
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-
-                <div className="relative h-full bg-slate-900 rounded-2xl p-8 transition-colors hover:bg-slate-800/50">
-                  <div className="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10 transition-colors">
-                    <span className="text-indigo-400 group-hover:text-indigo-300">
-                      {feature.icon}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
+
+
 
 
       {/* 3. CTA SECTION */}
