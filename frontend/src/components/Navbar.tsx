@@ -8,7 +8,7 @@ import {
     BarChart,
     ClipboardEdit,
     Users,
-    Command, 
+    Command,
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import {
@@ -42,13 +42,12 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md supports-backdrop-filter:bg-slate-950/60">
+        <nav className="fixed top-0 rounded-2xl z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md supports-backdrop-filter:bg-slate-950/60 ">
             {/* Top Glow Line */}
             <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-slate-700 to-transparent opacity-40"></div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
-
                     {/* --- Logo Section --- */}
                     <div className="flex items-center gap-8">
                         <div

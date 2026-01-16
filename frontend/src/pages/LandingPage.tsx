@@ -61,10 +61,9 @@ const LandingPage = () => {
 
 
   return (
-    <div className=" min-h-screen flex flex-col">
-
+    <div className=" min-h-screen flex flex-col ">
       {/* 1. HERO SECTION */}
-      <section className="relative w-full pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-950">
+      <section className=" w-full pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-950">
 
 
         {/* Grid Pattern */}
