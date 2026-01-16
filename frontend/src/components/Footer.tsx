@@ -1,4 +1,4 @@
-import { Command, Github, Linkedin, Twitter } from 'lucide-react';
+import { Building,  Github, Linkedin, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Footer() {
@@ -35,11 +35,7 @@ function Footer() {
 
     return (
         <footer className="relative bg-slate-950 pt-20 pb-10 border-t border-slate-800 overflow-hidden">
- 
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1px bg-linear-to-r from-transparent via-slate-700 to-transparent opacity-50"></div>
 
-            {/* Background Grid Pattern (Low Opacity) */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
 
             <div className="relative z-10 container mx-auto px-6 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
@@ -47,7 +43,7 @@ function Footer() {
                     <div className="lg:col-span-2">
                         <Link to="/" className="flex items-center gap-2 mb-6 group">
                             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600 text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
-                                <Command className="h-5 w-5" />
+                                <Building className="h-5 w-5" />
                             </div>
                             <span className="text-xl font-bold text-white tracking-tight">
                                 TaskManager
@@ -58,7 +54,6 @@ function Footer() {
                             Secure, scalable, and designed for speed.
                         </p>
 
-                        {/* Social Icons */}
                         <div className="flex gap-4">
                             {[Github, Twitter, Linkedin].map((Icon, i) => (
                                 <a
@@ -72,7 +67,6 @@ function Footer() {
                         </div>
                     </div>
 
-                    {/* Links Grid (Takes up remaining 4 columns) */}
                     <div className="lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 gap-8">
                         {footerItems.map((section) => (
                             <div key={section.section}>
@@ -97,15 +91,10 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
                 <div className="border-t border-slate-800/50 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                    <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span>All Systems Operational</span>
-                    </div>
 
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                        <span>© {new Date().getFullYear()} TaskManager Inc.</span>
+                    <div className="flex flex-col md:flex-row items-center w-screen justify-center gap-6">
+                        <span>@ 2026  {"  "} TaskManager Inc.</span>
                         <div className="flex gap-6">
                             <Link to="#" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
                             <Link to="#" className="hover:text-slate-300 transition-colors">Terms of Service</Link>

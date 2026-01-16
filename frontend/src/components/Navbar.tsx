@@ -8,7 +8,7 @@ import {
     BarChart,
     ClipboardEdit,
     Users,
-    Command,
+    Building,
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import {
@@ -43,36 +43,30 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 rounded-2xl z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md supports-backdrop-filter:bg-slate-950/60 ">
-            {/* Top Glow Line */}
-            <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-slate-700 to-transparent opacity-40"></div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
-                    {/* --- Logo Section --- */}
                     <div className="flex items-center gap-8">
                         <div
                             className="flex items-center space-x-3 cursor-pointer group"
                             onClick={() => handleNavClick('/')}
                         >
-                            {/* Logo Icon */}
                             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 border border-slate-800 shadow-lg group-hover:border-orange-500/50 transition-colors">
                                 <div className="absolute inset-0 bg-orange-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <Command className="relative h-5 w-5 text-orange-500 group-hover:text-white transition-colors" />
+                                <Building className="relative h-5 w-5 text-orange-500 group-hover:text-white transition-colors" />
                             </div>
 
                             {/* Logo Text */}
                             <div className="text-xl font-bold tracking-tight">
                                 <span className="text-white">Task</span>
-                                <span className="bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">Manager</span>
+                                <span className="bg-linear-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">Manager</span>
                             </div>
                         </div>
 
-                        {/* --- Desktop Navigation --- */}
                         <div className="hidden lg:flex lg:items-center lg:space-x-1">
                             {navItems.map((item) => {
                                 const Icon = item.image
                                 const isActive = isActiveLink(item.link)
-
                                 return (
                                     <Button
                                         key={item.name}
@@ -80,7 +74,7 @@ const Navbar = () => {
                                         className={`
                                             relative h-9 px-4 text-sm font-medium transition-all duration-200
                                             ${isActive
-                                                ? 'text-white bg-slate-800/50'
+                                                ? 'text-white bg-slate-800/50 hover:bg-slate-300'
                                                 : 'text-slate-400 hover:text-white hover:bg-slate-800/30'
                                             }
                                         `}
@@ -88,22 +82,15 @@ const Navbar = () => {
                                     >
                                         <Icon className={`mr-2 h-4 w-4 ${isActive ? 'text-orange-400' : 'text-slate-500'}`} />
                                         {item.name}
-
-                                        {/* Active Indicator Line */}
-                                        {isActive && (
-                                            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-orange-500 to-purple-500 rounded-full"></span>
-                                        )}
                                     </Button>
                                 )
                             })}
                         </div>
                     </div>
 
-                    {/* --- Right Side Actions --- */}
                     <div className="flex items-center space-x-5">
                         {user && (
                             <>
-                                {/* Notification Bell */}
                                 <Button variant="ghost" size="icon" className="relative text-slate-400 hover:text-white hover:bg-slate-800 rounded-full">
                                     <Bell className="h-5 w-5" />
                                     <span className="absolute top-2 right-2 flex h-2 w-2">
@@ -112,7 +99,6 @@ const Navbar = () => {
                                     </span>
                                 </Button>
 
-                                {/* Stats (Desktop Only) */}
                                 <div className="hidden xl:flex items-center space-x-6 border-l border-slate-800 pl-6 h-8">
                                     <div className="text-right">
                                         <p className="text-xs font-medium text-slate-400">Active Projects</p>
@@ -125,25 +111,23 @@ const Navbar = () => {
                                 </div>
                             </>
                         )}
-
+                        {/* dropDOwn menu */}
                         {user ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button variant="ghost" className="flex items-center space-x-3 px-2 hover:bg-slate-900 rounded-full border border-transparent hover:border-slate-800 transition-all">
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-purple-600 text-white shadow-md ring-2 ring-slate-950">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-orange-500 to-purple-600 text-white shadow-md ring-2 ring-slate-950">
                                             <span className="font-bold text-sm">
                                                 {user.name?.charAt(0).toUpperCase() || 'U'}
                                             </span>
                                         </div>
                                         <div className="hidden md:block text-left mr-1">
                                             <p className="text-sm font-medium text-slate-200">{user.name}</p>
-                                            <p className="text-[10px] text-slate-500 uppercase tracking-wider">{user.role}</p>
                                         </div>
                                         <ChevronDown className="h-4 w-4 text-slate-500" />
                                     </Button>
                                 </DropdownMenuTrigger>
 
-                                {/* Dark Mode Dropdown Content */}
                                 <DropdownMenuContent align="end" className="w-60 bg-slate-950 border border-slate-800 text-slate-300 shadow-2xl shadow-black/50 p-2">
                                     <DropdownMenuLabel className="text-slate-500 text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator className="bg-slate-800" />
@@ -195,7 +179,6 @@ const Navbar = () => {
                             </div>
                         )}
 
-                        {/* Mobile Menu Toggle */}
                         <Button
                             variant="ghost"
                             size="icon"
@@ -203,7 +186,7 @@ const Navbar = () => {
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         >
                             {isMobileMenuOpen ? (
-                                <X className="h-6 w-6" />
+                                <X className="h-6 w-8" />
                             ) : (
                                 <Menu className="h-6 w-6" />
                             )}
@@ -211,7 +194,6 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* --- Mobile View --- */}
                 {isMobileMenuOpen && (
                     <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 absolute left-0 w-full px-4 pb-6 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top-5">
 
@@ -240,7 +222,7 @@ const Navbar = () => {
                                 <>
                                     <div className="my-4 border-t border-slate-800/50"></div>
                                     <div className="flex items-center space-x-4 px-2 py-3 bg-slate-900/50 rounded-lg border border-slate-800">
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-purple-600 text-white">
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-orange-500 to-purple-600 text-white">
                                             <span className="font-bold text-lg">
                                                 {user.name?.charAt(0).toUpperCase() || 'U'}
                                             </span>
@@ -269,18 +251,7 @@ const Navbar = () => {
                             )}
                         </div>
 
-                        {user &&
-                            <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-800 pt-6">
-                                <div className="text-center p-3 rounded-xl bg-slate-900 border border-slate-800">
-                                    <p className="text-2xl font-bold text-white">12</p>
-                                    <p className="text-xs text-slate-500 uppercase tracking-wider mt-1">Active Projects</p>
-                                </div>
-                                <div className="text-center p-3 rounded-xl bg-slate-900 border border-slate-800">
-                                    <p className="text-2xl font-bold text-white">48</p>
-                                    <p className="text-xs text-slate-500 uppercase tracking-wider mt-1">Team Members</p>
-                                </div>
-                            </div>
-                        }
+
                     </div>
                 )}
             </div>

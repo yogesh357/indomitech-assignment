@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import api from "@/lib/axios"
-import { AlertCircle, CalendarIcon, Loader2, Sparkles, User } from "lucide-react"
+import {  CalendarIcon, Loader2,  User } from "lucide-react"
 
 const taskSchema = z.object({
     title: z.string().min(3, "Task title is required"),
