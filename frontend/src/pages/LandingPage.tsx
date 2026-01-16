@@ -1,143 +1,244 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Rocket, Users, ClipboardList, Server, UserCog, Layers, ShieldCheck } from 'lucide-react'
-import Footer from '@/components/Footer'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Rocket,
+  Users,
+  ClipboardList,
+  Server,
+  UserCog,
+  Layers,
+  ShieldCheck,
+  ChevronRight,
+  ArrowRight
+} from 'lucide-react'
+import Footer from '@/components/Footer'
 
 const LandingPage = () => {
+  const { user } = useAuth()
+
   const features = [
     {
-      title: "Secure Admin Authentication",
-      description:
-        "Role-based login system that ensures only authorized administrators can access and manage employee data.",
-      icon: <ShieldCheck className="h-8 w-8" />,
+      title: "Secure Authentication",
+      description: "Enterprise-grade role-based login ensuring only authorized personnel access sensitive data.",
+      icon: <ShieldCheck className="h-6 w-6 text-orange-600" />,
+      bg: "bg-orange-100/50"
     },
     {
       title: "Employee Management",
-      description:
-        "Create, view, update, and manage employees directly from the admin dashboard.",
-      icon: <Users className="h-8 w-8" />,
+      description: "Centralized hub to create, update, and manage staff profiles efficiently.",
+      icon: <Users className="h-6 w-6 text-blue-600" />,
+      bg: "bg-blue-100/50"
     },
     {
-      title: "Task Assignment",
-      description:
-        "Assign tasks to employees and track their progress in real time.",
-      icon: <ClipboardList className="h-8 w-8" />,
+      title: "Task Tracking",
+      description: "Real-time task assignment and progress monitoring to keep your team aligned.",
+      icon: <ClipboardList className="h-6 w-6 text-green-600" />,
+      bg: "bg-green-100/50"
     },
     {
-      title: "Backend API Integration",
-      description:
-        "All data is powered by a REST API with secure authentication and persistent storage.",
-      icon: <Server className="h-8 w-8" />,
+      title: "Robust API",
+      description: "Powered by a secure REST API architecture ensuring fast data retrieval.",
+      icon: <Server className="h-6 w-6 text-purple-600" />,
+      bg: "bg-purple-100/50"
     },
     {
       title: "Role-Based Access",
-      description:
-        "Admins and employees only see what they are allowed to access.",
-      icon: <UserCog className="h-8 w-8" />,
+      description: "Granular permission settings. Admins manage the system; employees focus on tasks.",
+      icon: <UserCog className="h-6 w-6 text-pink-600" />,
+      bg: "bg-pink-100/50"
     },
     {
       title: "Scalable Architecture",
-      description:
-        "Built with React, Node.js, and modern best practices to scale with your business.",
-      icon: <Layers className="h-8 w-8" />,
+      description: "Built on React and Node.js, designed to grow seamlessly with your business.",
+      icon: <Layers className="h-6 w-6 text-indigo-600" />,
+      bg: "bg-indigo-100/50"
     },
   ]
 
-  const { user } = useAuth()
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-background to-muted/30 ">
+    <div className="bg-white min-h-screen flex flex-col">
 
-      <div className=''>
+      {/* 1. HERO SECTION */}
+      <section className="relative  w-full pt-24 pb-20 md:pt-32 md:pb-32 lg:pb-40 px-4">
+        <div className="container mx-auto text-center">
 
-        <section className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+
+          {/* Heading */}
+          <h1 className="mx-auto max-w-5xl text-5xl  font-extrabold tracking-normal text-slate-900 sm:text-6xl md:text-7xl mb-8 drop-shadow-sm">
             Streamline Your Workflow with{' '}
-            <span className="bg-linear-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">
               TaskManager
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-            A modern HR and employee management platform that helps businesses
-            manage staff, assign tasks, and track productivity through a secure
-            admin dashboard.
+
+          {/* Subtitle */}
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-600 sm:text-xl leading-relaxed">
+            A modern HR platform for forward-thinking companies. Manage staff,
+            assign tasks, and track productivity—all in one secure dashboard.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {user ?
-              (
-                <Button size="lg" className="text-lg px-8" asChild>
-                  <Link to={'/admin'}>
-                    Go to Dashboard
+
+          {/* Buttons */}
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            {user ? (
+              <Button size="lg" className="h-12 px-8 text-base shadow-lg shadow-orange-500/20 bg-orange-600 hover:bg-orange-700 transition-all hover:scale-105" asChild>
+                <Link to={'/admin'}>
+                  Go to Dashboard
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            ) : (
+              <>
+                <Button size="lg" className="h-12 min-w-[160px] text-base font-semibold shadow-xl shadow-orange-500/10 bg-slate-900 hover:bg-slate-800 transition-all hover:-translate-y-1" asChild>
+                  <Link to="/admin/login">Admin Login</Link>
+                </Button>
+                <Button size="lg" variant="outline" className="h-12 min-w-[160px] border-slate-300 bg-white/50 backdrop-blur-sm text-base hover:bg-white hover:text-orange-600 transition-all" asChild>
+                  <Link to="/employe/task">
                     <Rocket className="mr-2 h-5 w-5" />
+                    Task Module
                   </Link>
                 </Button>
-              ) : (
-                <>
-                  <Button size="lg" className="text-lg px-8">
-                    <Link to="/admin/login">Admin Login</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="text-lg px-8 " asChild>
-                    <Link to="/employe/task">
-                      <Rocket className="mr-2 h-5 w-5" />
-                      View Task Module
-                    </Link>
-                  </Button>
-                </>
-              )
-            }
+              </>
+            )}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="container mx-auto px-4 py-20">
-          <h2 className="text-4xl font-bold text-center mb-4">Powerful Features</h2>
-          <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Built for businesses that need security, structure, and scalability.
-          </p>
+      {/* features */}
+      {/* <section className="relative py-24 overflow-hidden bg-slate-50"> 
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl z-0 pointer-events-none">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute top-20 right-20 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4"> 
+          <div className="mb-20 text-center max-w-3xl mx-auto">
+            <span className="text-orange-600 font-semibold tracking-wide uppercase text-sm bg-orange-50 px-3 py-1 rounded-full mb-4 inline-block">
+              Features
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+              Powerful features for <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-purple-600">modern teams</span>
+            </h2>
+            <p className="text-xl text-slate-600 leading-relaxed">
+              Everything you need to manage your team — designed for clarity, security, and scale.
+            </p>
+          </div>
+  
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="border-2 border-gray-600 bg-linear-to-bl from-white to-gray-200">
-                <CardHeader>
-                  <div className="text-primary mb-4">{feature.icon}</div>
-                  <CardTitle>{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                className="group relative bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              > 
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative z-10 flex flex-col h-full"> 
+                  <div className={`mb-6 inline-flex items-center justify-center h-14 w-14 rounded-2xl ${feature.bg} text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform duration-300`}>
+                    {feature.icon}
+                  </div>
+ 
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
+                    {feature.description}
+                  </p>
+ 
+                  <div className="flex items-center text-sm font-semibold text-slate-900 group/link cursor-pointer">
+                    Learn more
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform text-orange-600" />
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section> */}
 
+      {/* featurs section */}
+      <section className="bg-slate-950 py-24 text-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="mb-20 text-center">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
+              Engineered for <span className="text-indigo-400">Perfomance</span>
+            </h2>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Unleash the full potential of your workflow with tools built for the future.
+            </p>
+          </div>
 
-        <section className="container mx-auto px-4 py-20 text-center">
-          <Card className="max-w-4xl mx-auto bg-linear-to-r from-primary/10 to-purple-500/10">
-            <CardContent className="pt-12 pb-12">
-              <h2 className="text-4xl font-bold mb-6">
-                Try the Admin Dashboard Live
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Log in as an admin and explore the task management system with
-                real Backend Integration.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-slate-700 to-slate-900 overflow-hidden"
+              >
+                {/* Glowing Border Animation */}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
-                  <Link to="/admin/login">Login as Admin</Link>
-                </Button>
+                <div className="relative h-full bg-slate-900 rounded-2xl p-8 transition-colors hover:bg-slate-800/50">
+                  <div className="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10 transition-colors">
+                    <span className="text-indigo-400 group-hover:text-indigo-300">
+                      {feature.icon}
+                    </span>
+                  </div>
 
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/employe/task">Open Task Module</Link>
-                </Button>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
-        </section>
+            ))}
+          </div>
+        </div>
+      </section>
 
+
+      {/* 3. CTA SECTION */}
+      <section className="relative z-10 container mx-auto px-4 py-24 text-center">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl">
+
+          {/* Decorative background circle inside the card */}
+          <div className="absolute top-0 right-0 -mr-20 -mt-20 h-[300px] w-[300px] rounded-full bg-orange-500/20 blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-[300px] w-[300px] rounded-full bg-purple-500/20 blur-3xl"></div>
+
+          <div className="relative z-10 px-6 py-16 sm:px-12 sm:py-20">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+              Ready to modernize your HR process?
+            </h2>
+            <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+              Join admin users managing tasks efficiently. Experience the secure,
+              real-time dashboard today.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-semibold h-12 px-8" asChild>
+                <Link to="/admin/login">
+                  Login as Admin
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+
+              <Button size="lg" variant="outline" className="border-slate-700 bg-transparent text-white hover:bg-slate-800 hover:text-white h-12 px-8" asChild>
+                <Link to="/employe/task">Open Task Module</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FOOTER */}
+      <div className="relative z-10 mt-auto border-t border-slate-200/60 bg-white/40 backdrop-blur-md">
         <Footer />
-      </div >
-    </div >
+      </div>
+
+    </div>
   )
 }
 

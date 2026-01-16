@@ -137,10 +137,16 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const logout = async (req: Request, res: Response) => {
+    // res.clearCookie("token", {
+    //     httpOnly: true,
+    //     sameSite: "none",
+    //     secure: process.env.NODE_ENV === "production",
+    // });
     res.clearCookie("token", {
         httpOnly: true,
-        sameSite: "none",
         secure: process.env.NODE_ENV === "production",
+        // sameSite: "none",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     res.status(200).json({
         success: true,

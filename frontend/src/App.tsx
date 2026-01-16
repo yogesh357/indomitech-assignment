@@ -12,7 +12,7 @@ import { Button } from './components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import TaskList from '@/pages/admin/task/TaskList'
 import TaskCreate from '@/pages/admin/task/TaskCreate'
-import Contact from './components/Contact' 
+import Contact from './components/Contact'
 
 function App() {
   return (

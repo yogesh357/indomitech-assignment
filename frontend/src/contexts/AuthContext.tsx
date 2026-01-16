@@ -92,8 +92,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const logout = async () => {
         setUser(null)
-        await api.post('/auth/logout')
-        toast.success("Logged out !!")
+        console.log("user logged out");
+
+        const res = await api.post('/auth/logout')
+        console.log("[after user logged out]");
+        // toast.success("Logged out !!")
+        console.log("[logout res is :: ]", res);
+
+        toast.success(res.data?.message || "Logged out !!")
         navigate('/admin/login')
     }
 

@@ -16,7 +16,7 @@ interface JwtPayload {
 
 export const protect = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies?.token; 
+        const token = req.cookies?.token;
 
         if (!token) {
             return res.status(401).json({
@@ -25,7 +25,7 @@ export const protect = async (req: Request, res: Response, next: NextFunction) =
             });
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload; 
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
         const user = await User.findById(decoded.id).select("-password");
 
         if (!user) {
