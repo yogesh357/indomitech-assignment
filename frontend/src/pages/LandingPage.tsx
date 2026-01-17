@@ -153,23 +153,17 @@ const LandingPage = () => {
                       {feature.icon}
                     </span>
                   </div>
-
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
                 </div>
+
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section >
+
 
       {/* Bottom boxx */}
-      <section className="relative py-24 px-4 bg-slate-950">
+      <section className="relative py-24 px-4 bg-slate-950" >
         <div className="container mx-auto max-w-5xl">
           <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl shadow-2xl group">
 
@@ -229,10 +223,10 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
- 
+
       <Footer />
 
-    </div>
+    </div >
   )
 }
 
