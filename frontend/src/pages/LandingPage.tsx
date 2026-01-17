@@ -154,19 +154,7 @@ const LandingPage = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {feature.title}
-                  </h3>
 
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Bottom boxx */}
       <section className="relative py-24 px-4 bg-slate-950">
