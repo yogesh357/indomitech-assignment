@@ -33,8 +33,9 @@ const Navbar = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const { user, logout } = useAuth()
+    const isActiveLink = (link: string) =>
+        location.pathname === link || location.pathname.startsWith(link + "/")
 
-    const isActiveLink = (link: any) => location.pathname === link
 
     const handleNavClick = (link: any) => {
         navigate(link)
@@ -131,7 +132,7 @@ const Navbar = () => {
                                 <DropdownMenuContent align="end" className="w-60 bg-slate-950 border border-slate-800 text-slate-300 shadow-2xl shadow-black/50 p-2">
                                     <DropdownMenuLabel className="text-slate-500 text-xs uppercase tracking-wider">My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator className="bg-slate-800" />
-                                    <DropdownMenuItem className="cursor-pointer focus:bg-slate-900 focus:text-white" onClick={() => navigate('/admin')}>
+                                    <DropdownMenuItem className="cursor-pointer focus:bg-slate-900 focus:text-white" onClick={() => navigate('/admin/dashboard')}>
                                         <BarChart className="mr-2 h-4 w-4 text-blue-500" />
                                         Dashboard
                                     </DropdownMenuItem>
@@ -179,23 +180,23 @@ const Navbar = () => {
                             </div>
                         )}
 
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="lg:hidden text-slate-300 hover:text-white hover:bg-slate-800"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        >
-                            {isMobileMenuOpen ? (
-                                <X className="h-6 w-8" />
-                            ) : (
-                                <Menu className="h-6 w-6" />
-                            )}
-                        </Button>
                     </div>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="lg:hidden text-slate-300 hover:text-white hover:bg-slate-800"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? (
+                            <X className="h-6 w-8" />
+                        ) : (
+                            <Menu className="h-6 w-6" />
+                        )}
+                    </Button>
                 </div>
 
                 {isMobileMenuOpen && (
-                    <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 absolute left-0 w-full px-4 pb-6 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top-5">
+                    <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 fixed top-20 left-0 w-full px-4 pb-6 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top-5">
 
                         <div className="space-y-1 pt-4">
                             {navItems.map((item) => {

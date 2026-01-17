@@ -2,7 +2,7 @@ import { Globe, Mail } from "lucide-react";
 
 const ContactSection = () => {
     return (
-        <section className=" w-full py-24 h-[90vh] flex items-center bg-slate-950 text-slate-200 ">
+        <section className=" w-full py-24 md:h-[90vh]  flex items-center bg-slate-950 text-slate-200 ">
 
             <div className="relative z-10 container mx-auto px-6 md:px-20 max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">

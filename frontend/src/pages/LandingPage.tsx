@@ -60,15 +60,16 @@ const LandingPage = () => {
 
 
   return (
-    <div className=" min-h-screen flex flex-col ">
+    <div className=" min-h-screen flex flex-col  ">
       {/* 1. HERO SECTION */}
       <section className=" w-full pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-slate-950">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-250 h-100 bg-purple-500/20 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
 
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-slate-950/60 to-slate-950 pointer-events-none"></div>
 
         <div className="relative z-10 container mx-auto text-center px-4">
-          <h1 className="mx-auto max-w-5xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl mb-8 drop-shadow-2xl">
+          {/* <h1 className="mx-auto max-w-5xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl mb-8 drop-shadow-2xl"> */}
+          <h1 className="mx-auto   text-3xl sm:text-4xl  md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white   mb-8 drop-shadow-2xl">
+
             Streamline Your Workflow with{' '}
             <span className="relative ">
               <span className="absolute -inset-1 rounded-lg bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 opacity-20 blur-lg"></span>
@@ -91,7 +92,7 @@ const LandingPage = () => {
                 className="group h-14 px-8 text-base font-semibold bg-linear-to-r from-orange-600 to-pink-600 hover:from-orange-500 hover:to-pink-500 text-white   hover:scale-105"
                 asChild
               >
-                <Link to={'/admin'}>
+                <Link to={'/admin/dashboard'}>
                   Go to Dashboard
                   <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
