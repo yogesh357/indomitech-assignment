@@ -144,16 +144,23 @@ const LandingPage = () => {
                 key={index}
                 className="group relative p-1 rounded-2xl bg-linear-to-b from-slate-700 to-slate-900 overflow-hidden"
               >
-                {/* <div className="absolute inset-0 bg-linear-to-r from-indigo-500 via-purple-500 to-indigo-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" /> */}
-                <div className='absolute inset-0 group-hover:bg-slate-700 ' />
-
+                <div className="absolute inset-0 bg-linear-to-r from-indigo-500 via-purple-500 to-indigo-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
                 <div className="relative h-full bg-slate-900 rounded-2xl p-8 transition-colors hover:bg-slate-800/50">
-                  <div className="mb-5 inline-flex items-center  justify-center w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10 transition-colors">
+                  <div className="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-indigo-500/50 group-hover:bg-indigo-500/10 transition-colors">
                     <span className="text-indigo-400 group-hover:text-indigo-300">
                       {feature.icon}
                     </span>
                   </div>
+
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
+
 
               </div>
             ))}
