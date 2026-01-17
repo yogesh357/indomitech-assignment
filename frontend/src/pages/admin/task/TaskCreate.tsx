@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import api from "@/lib/axios"
-import {  CalendarIcon, Loader2,  User } from "lucide-react"
+import { CalendarIcon, Loader2, User } from "lucide-react"
 
 const taskSchema = z.object({
     title: z.string().min(3, "Task title is required"),
@@ -64,8 +64,7 @@ export default function TaskCreate() {
         <div className="container mx-auto max-w-4xl pt-24 pb-20 px-4">
             <div className="mb-10 text-center space-y-2">
                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
-                    Assign New {"  "}
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-purple-500">Tasks</span>
+                    Assign New  Tasks
                 </h2>
             </div>
 
