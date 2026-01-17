@@ -27,7 +27,8 @@ function App() {
         <Route path="/admin" element={
           <ProtectedRoute />
         }>
-          <Route index element={<Dashboard />} />
+          {/* <Route index element={<Dashboard />} /> */}
+          <Route path='dashboard' index element={<Dashboard />} />
           <Route path="/admin/employees/tasks" element={<TaskList />} />
           <Route path="/admin/task/assign" element={<TaskCreate />} />
         </Route>
@@ -37,7 +38,7 @@ function App() {
         <Route path='/tasks' element={<UnderDevelopment />} />
         <Route path='/contact' element={<Contact />}></Route>
         <Route path='/features' element={<UnderDevelopment />} />3
-        <Route path='/*' element={<div className='h-[90vh] flex flex-col gap-5 justify-center items-center text-2xl font-semibold'>
+        <Route path='/*' element={<div className='h-[90vh] flex flex-col gap-5 justify-center text-white items-center text-2xl font-semibold'>
           route not found
           <Button onClick={() => window.location.replace('/')}>
             <ArrowLeft />

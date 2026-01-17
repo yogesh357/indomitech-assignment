@@ -112,7 +112,7 @@ const LandingPage = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group h-12 min-w-40text-base border-slate-700 bg-slate-900/50 backdrop-blur-md text-slate-300 hover:text-white hover:bg-slate-800 hover:border-orange-500/50 transition-all"
+                  className="group h-12 min-w-40 text-base border-slate-700 bg-slate-900/50 backdrop-blur-md text-slate-300 hover:text-white hover:bg-slate-800 hover:border-orange-500/50 transition-all"
                   asChild
                 >
                   <Link to="/employe/task">
@@ -153,11 +153,17 @@ const LandingPage = () => {
                       {feature.icon}
                     </span>
                   </div>
+                </div>
 
+              </div>
+            ))}
+          </div>
+        </div>
+      </section >
 
 
       {/* Bottom boxx */}
-      <section className="relative py-24 px-4 bg-slate-950">
+      <section className="relative py-24 px-4 bg-slate-950" >
         <div className="container mx-auto max-w-5xl">
           <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur-xl shadow-2xl group">
 
@@ -218,10 +224,9 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/*  FOOTER */}
       <Footer />
 
-    </div>
+    </div >
   )
 }
 
