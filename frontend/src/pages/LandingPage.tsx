@@ -112,7 +112,7 @@ const LandingPage = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group h-12 min-w-40text-base border-slate-700 bg-slate-900/50 backdrop-blur-md text-slate-300 hover:text-white hover:bg-slate-800 hover:border-orange-500/50 transition-all"
+                  className="group h-12 min-w-40 text-base border-slate-700 bg-slate-900/50 backdrop-blur-md text-slate-300 hover:text-white hover:bg-slate-800 hover:border-orange-500/50 transition-all"
                   asChild
                 >
                   <Link to="/employe/task">
@@ -229,8 +229,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/*  FOOTER */}
+ 
       <Footer />
 
     </div>

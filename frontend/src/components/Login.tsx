@@ -45,7 +45,7 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            navigate("/admin", { replace: true })
+            navigate("/admin/dashboard", { replace: true })
         }
     }, [user])
 

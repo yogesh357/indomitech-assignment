@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             const response = await api.post('/auth/login', { email, password })
             const { user: userData } = response.data
             setUser(userData)
-            navigate('/admin')
+            navigate('/admin/dashboard')
             toast.success(response?.data?.message || "Admin Logged in succesfully")
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Login failed')
@@ -77,10 +77,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             const response = await api.post('/auth/register', { name, email, password })
             const { user: userData } = response.data
             setUser(userData)
-            navigate('/admin')
+            navigate('/admin/dashboard')
             toast.success(response?.data?.message || "Admin signup succesfully")
-        } catch (error: any) {
-            console.log(error, "3333333333333333");
+        } catch (error: any) { 
 
             const message =
                 error.response?.data?.message || "Registration failed"

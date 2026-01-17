@@ -39,7 +39,7 @@ function Signup() {
 
     useEffect(() => {
         if (user) {
-            navigate("/admin", { replace: true })
+            navigate("/admin/dashboard", { replace: true })
         }
     }, [user])
 
