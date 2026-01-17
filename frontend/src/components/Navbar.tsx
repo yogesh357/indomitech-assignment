@@ -173,7 +173,7 @@ const Navbar = () => {
                                 </Button>
                                 <Button
                                     className="bg-white text-slate-950 hover:bg-slate-200 font-semibold shadow-[0_0_15px_-3px_rgba(255,255,255,0.3)]"
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate('/admin/signup')}
                                 >
                                     Get Started
                                 </Button>

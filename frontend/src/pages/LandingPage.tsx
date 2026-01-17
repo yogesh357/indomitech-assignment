@@ -67,12 +67,11 @@ const LandingPage = () => {
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-slate-950/60 to-slate-950 pointer-events-none"></div>
 
         <div className="relative z-10 container mx-auto text-center px-4">
-          {/* <h1 className="mx-auto max-w-5xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl mb-8 drop-shadow-2xl"> */}
           <h1 className="mx-auto   text-3xl sm:text-4xl  md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white   mb-8 drop-shadow-2xl">
 
             Streamline Your Workflow with{' '}
             <span className="relative ">
-              <span className="absolute -inset-1 rounded-lg bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 opacity-20 blur-lg"></span>
+              <span className="absolute inset-1 rounded-lg bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 opacity-20 blur-lg"></span>
               <span className="relative bg-linear-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                 TaskManager
               </span>
