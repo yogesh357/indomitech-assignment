@@ -44,13 +44,13 @@ export const getAllTasks = async (req: Request, res: Response) => {
         const skip = (page - 1) * limit;
         const status = typeof req.query.status === "string"
             ? req.query.status.trim()
-            : ""; 
+            : "";
 
         const filter: any = {
             createdBy: userId,
         };
 
-        if (search || status) {
+        if (search) {
             filter.$or = [
                 { employeeName: { $regex: search, $options: "i" } },
                 { description: { $regex: search, $options: "i" } },
