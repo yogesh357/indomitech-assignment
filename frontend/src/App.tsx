@@ -46,9 +46,11 @@ function App() {
         </div>} />
 
       </Routes>
+
       <Toaster />
     </>
   )
 }
 
 export default App
+
